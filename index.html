@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookStore - Buy & Sell Books Online</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="nav-logo">📚 BookStore</h1>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showSection('buyer')">Shop Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showSection('seller')">Sell Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showSection('cart')">Cart (<span id="cart-count">0</span>)</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Buyer Section -->
+        <section id="buyer-section" class="section active">
+            <div class="container">
+                <h2>Browse Books</h2>
+                
+                <!-- Search and Filter -->
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search books by title, author, or genre..." onkeyup="searchBooks()">
+                    <select id="genre-filter" onchange="filterBooks()">
+                        <option value="">All Genres</option>
+                        <option value="Fiction">Fiction</option>
+                        <option value="Non-Fiction">Non-Fiction</option>
+                        <option value="Mystery">Mystery</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Sci-Fi">Science Fiction</option>
+                        <option value="Biography">Biography</option>
+                    </select>
+                </div>
+
+                <!-- Books Grid -->
+                <div id="books-grid" class="books-grid">
+                    <!-- Books will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Seller Section -->
+        <section id="seller-section" class="section">
+            <div class="container">
+                <h2>Sell Your Books</h2>
+                
+                <!-- Add Book Form -->
+                <div class="form-container">
+                    <h3>Add New Book</h3>
+                    <form id="add-book-form">
+                        <div class="form-group">
+                            <label for="book-title">Title:</label>
+                            <input type="text" id="book-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="book-author">Author:</label>
+                            <input type="text" id="book-author" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="book-genre">Genre:</label>
+                            <select id="book-genre" required>
+                                <option value="">Select Genre</option>
+                                <option value="Fiction">Fiction</option>
+                                <option value="Non-Fiction">Non-Fiction</option>
+                                <option value="Mystery">Mystery</option>
+                                <option value="Romance">Romance</option>
+                                <option value="Sci-Fi">Science Fiction</option>
+                                <option value="Biography">Biography</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="book-price">Price ($):</label>
+                            <input type="number" id="book-price" step="0.01" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="book-description">Description:</label>
+                            <textarea id="book-description" rows="4" required></textarea>
+                        </div>
+                        <button type="submit">Add Book</button>
+                    </form>
+                </div>
+
+                <!-- Seller's Books -->
+                <div class="seller-books">
+                    <h3>Your Books for Sale</h3>
+                    <div id="seller-books-list" class="seller-books-grid">
+                        <!-- Seller's books will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cart Section -->
+        <section id="cart-section" class="section">
+            <div class="container">
+                <h2>Shopping Cart</h2>
+                <div id="cart-items" class="cart-items">
+                    <!-- Cart items will be populated by JavaScript -->
+                </div>
+                <div class="cart-total">
+                    <h3>Total: $<span id="cart-total">0.00</span></h3>
+                    <button id="checkout-btn" onclick="checkout()">Checkout</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for book details -->
+    <div id="book-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modal-book-details"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
